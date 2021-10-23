@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import socratesImg from '../assets/images/socrates.png'
 import { Quotes } from '../components/Quotes'
+import { getQuote } from '../services/quotesService'
 
 const Content = styled.div`
   height: 100vh;
@@ -16,9 +18,23 @@ const SocratesImg = styled.img`
 `
 
 function App() {
+  const [quote, setQuote] = useState({
+    quote: 'ok',
+    speaker: 'random',
+  })
+
+  const onUpdate = async () => {
+    const resQuote = await getQuote()
+    const newQuote = {
+      quote: resQuote.content,
+      speaker: resQuote.author,
+    }
+    setQuote(newQuote)
+  }
+
   return (
     <Content className="App">
-      <Quotes quote="ok" speaker="random" />
+      <Quotes {...quote} handleClick={onUpdate} />
       <SocratesImg src={socratesImg} alt="Socrates" />
     </Content>
   )
