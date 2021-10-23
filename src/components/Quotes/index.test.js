@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { Quotes } from '.'
 
 const quote = 'test quote'
@@ -13,4 +13,14 @@ test('renders received quote, speaker and a button', () => {
   expect(quoteEl).toBeInTheDocument()
   expect(speakerEl).toBeInTheDocument()
   expect(buttonEl).toBeInTheDocument()
+})
+
+test('calls a callback when the button is pressed', () => {
+  const callback = jest.fn()
+  render(<Quotes quote={quote} speaker={speaker} handleClick={callback} />)
+  const buttonEl = screen.getByRole('button')
+
+  fireEvent.click(buttonEl)
+
+  expect(callback).toHaveBeenCalledTimes(1)
 })

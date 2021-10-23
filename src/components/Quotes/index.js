@@ -17,12 +17,12 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-export function Quotes({ quote, speaker }) {
+export function Quotes({ quote, speaker, handleClick }) {
   return (
     <Wrapper>
       <Quote>{quote}</Quote>
       <Speaker>- {speaker}</Speaker>
-      <Button>New Quote</Button>
+      <Button onClick={handleClick}>New Quote</Button>
     </Wrapper>
   )
 }
