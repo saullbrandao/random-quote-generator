@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import socratesImg from '../assets/images/socrates.png'
-import { Quote } from '../components/Quote'
+import { Quotes } from '../components/Quotes'
 
 const Content = styled.div`
   height: 100vh;
@@ -18,7 +18,7 @@ const SocratesImg = styled.img`
 function App() {
   return (
     <Content className="App">
-      <Quote quote="ok" speaker="random" />
+      <Quotes quote="ok" speaker="random" />
       <SocratesImg src={socratesImg} alt="Socrates" />
     </Content>
   )
