@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  background: #ff9000;
+  background: #007acc;
   color: #fff;
   border: 'none';
   border-radius: 0;
@@ -10,4 +10,8 @@ export const Button = styled.button`
   font-family: 'New Tegomin', sans-serif;
   cursor: pointer;
   box-shadow: #333 3px 2px;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
 `
