@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import socratesImg from '../assets/images/socrates.png'
 import { Quote } from '../components/Quote'
-import './App.css'
 
 const Content = styled.div`
   height: 100vh;
