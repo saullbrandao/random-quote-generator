@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import socratesImg from '../assets/images/socrates.png'
 import { Quotes } from '../components/Quotes'
@@ -18,19 +18,30 @@ const SocratesImg = styled.img`
 `
 
 function App() {
+  const isMounted = useRef(true)
   const [quote, setQuote] = useState({
-    quote: 'ok',
-    speaker: 'random',
+    quote: 'Loading quote...',
+    speaker: 'Loading speaker...',
   })
 
   const onUpdate = async () => {
     const resQuote = await getQuote()
-    const newQuote = {
-      quote: resQuote.content,
-      speaker: resQuote.author,
+    if (isMounted.current) {
+      const newQuote = {
+        quote: resQuote.content,
+        speaker: resQuote.author,
+      }
+      setQuote(newQuote)
     }
-    setQuote(newQuote)
   }
+
+  useEffect(() => {
+    onUpdate()
+
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
 
   return (
     <Content className="App">
